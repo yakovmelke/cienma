@@ -24,17 +24,15 @@ export const getUsersData = async (dispatch) => {
   });
   const action = { type: "ADD ALL USERS DATA", payload: finalData };
   dispatch(action);
-   
 };
 export const updateUserPassword = async (obj) => {
   const { data: user } = await axios.put(
     "http://localhost:8001/users/" + obj._id,
     obj
   );
-  console.log(user);
 };
 
-export const updateUser = async (obj,dispatch) => {
+export const updateUser = async (obj, dispatch) => {
   const permissions = { id: obj.id, permissions: obj.permissions };
   const userNameAndPassword = {
     _id: obj.id,
@@ -49,28 +47,34 @@ export const updateUser = async (obj,dispatch) => {
     sessionTimeOut: obj.sessionTimeOut,
     admin: obj.admin,
   };
-  const { data: usersApi } = await axios.put("http://localhost:8001/users/"+obj.id,userNameAndPassword);
+  const { data: usersApi } = await axios.put(
+    "http://localhost:8001/users/" + obj.id,
+    userNameAndPassword
+  );
   const { data: permissionsApi } = await axios.put(
-    "http://localhost:8001/permissions/"+obj.id,permissions
+    "http://localhost:8001/permissions/" + obj.id,
+    permissions
   );
-  const { data: userDataApi } = await axios.put("http://localhost:8001/user_data/"+obj.id,userPersonalData);
-  console.log(`permissions:`, usersApi);
-  console.log(`userNameAndPassword:`, permissionsApi);
-  console.log(`userPersonalData:`, permissions);
-  await getUsersData(dispatch)
+  const { data: userDataApi } = await axios.put(
+    "http://localhost:8001/user_data/" + obj.id,
+    userPersonalData
+  );
+  await getUsersData(dispatch);
 };
-export const deleteUser = async (id,dispatch) => {
-  const { data: usersApi } = await axios.delete("http://localhost:8001/users/"+id);
+export const deleteUser = async (id, dispatch) => {
+  const { data: usersApi } = await axios.delete(
+    "http://localhost:8001/users/" + id
+  );
   const { data: permissionsApi } = await axios.delete(
-    "http://localhost:8001/permissions/"+id
+    "http://localhost:8001/permissions/" + id
   );
-  const { data: userDataApi } = await axios.delete("http://localhost:8001/user_data/"+id);
-  console.log(`permissions:`, usersApi);
-  console.log(`userNameAndPassword:`, permissionsApi);
-  console.log(`userPersonalData:`, permissionsApi);
-  await getUsersData(dispatch)
+  const { data: userDataApi } = await axios.delete(
+    "http://localhost:8001/user_data/" + id
+  );
+
+  await getUsersData(dispatch);
 };
-export const createUser = async (obj,dispatch) => {
+export const createUser = async (obj, dispatch) => {
   const date = new Date();
   const permissions = { id: obj.id, permissions: obj.permissions };
   const userNameAndPassword = {
@@ -86,14 +90,18 @@ export const createUser = async (obj,dispatch) => {
     sessionTimeOut: obj.sessionTimeOut,
     admin: obj.admin,
   };
-  const { data: usersApi } = await axios.post("http://localhost:8001/users",userNameAndPassword);
-  const { data: permissionsApi } = await axios.post(
-    "http://localhost:8001/permissions",permissions
+  const { data: usersApi } = await axios.post(
+    "http://localhost:8001/users",
+    userNameAndPassword
   );
-  
-  const { data: userDataApi } = await axios.post("http://localhost:8001/user_data",userPersonalData);
-  console.log(`permissions:`, usersApi);
-  console.log(`userNameAndPassword:`, permissionsApi);
-  console.log(`userPersonalData:`, userDataApi);
-  await getUsersData(dispatch)
+  const { data: permissionsApi } = await axios.post(
+    "http://localhost:8001/permissions",
+    permissions
+  );
+
+  const { data: userDataApi } = await axios.post(
+    "http://localhost:8001/user_data",
+    userPersonalData
+  );
+  await getUsersData(dispatch);
 };

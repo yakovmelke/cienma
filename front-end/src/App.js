@@ -20,14 +20,10 @@ import "react-toastify/dist/ReactToastify.css"
 
 function App() {
   const loginUser = useSelector((log) => log.login);
-  console.log(loginUser);
+  
   return (
     <div className="App font-mono">
-      {/* <div className="flex justify-center">
-        <h1 className=" fixed text-slate-400 text-center  text-2xl font-black ">
-          Yakov`s Movies - Subscriptions Web Site
-        </h1>
-      </div> */}
+    
       <Routes>
         <Route path="" element={<LoginPage />} />
         <Route path="create_account" element={<CreateAccount />} />

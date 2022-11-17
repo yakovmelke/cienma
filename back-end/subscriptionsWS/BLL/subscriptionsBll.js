@@ -1,6 +1,5 @@
 const subscriptionsModel = require("../model/subscriptionsModel");
-const membersBll = require("../BLL/membersBll");
-const moviesBll = require("../BLL/moviesBll");
+
 
 const getAllSubscriptions = async () => {
   try {

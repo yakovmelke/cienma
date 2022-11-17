@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsersData } from "../apiData/UsersApiData";
 import { ErrorMsg } from "../utils/ErrorMsg";
 
-
 export default function LoginPage() {
   const navigate = useNavigate();
   const usersInRedux = useSelector((user) => user);
@@ -14,7 +13,6 @@ export default function LoginPage() {
     userName: "",
     password: "",
   });
-
 
   useEffect(() => {
     getUsersData(dispatch);
@@ -41,7 +39,6 @@ export default function LoginPage() {
     ) {
       ErrorMsg("user name or password was wrong");
     } else {
-      console.log(userGoIn);
       const action = { type: "LOGIN", payload: userGoIn };
       dispatch(action);
       navigate("/main_page");
@@ -94,7 +91,6 @@ export default function LoginPage() {
           </span>{" "}
         </p>
       </div>
-      
     </div>
   );
 }

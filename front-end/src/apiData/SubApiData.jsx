@@ -16,7 +16,6 @@ export const createSubscription = async (obj, dispatch) => {
   await getAllSubscriptions(dispatch);
 };
 export const updateSubscription = async (sub, obj, dispatch) => {
-  console.log(sub);
   const finalObj = {};
   finalObj.memberId = sub.memberId;
   finalObj.movies = sub.movies;
@@ -26,8 +25,4 @@ export const updateSubscription = async (sub, obj, dispatch) => {
     finalObj
   );
   await getAllSubscriptions(dispatch);
-};
-export const deleteSubscription = async (member) => {
-  console.log(member.id);
-  console.log(member.name._id);
 };

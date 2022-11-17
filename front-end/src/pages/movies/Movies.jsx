@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import MovieComponent from "../../utils/MovieComponent";
 
 export default function Movies() {

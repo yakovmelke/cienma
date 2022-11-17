@@ -5,17 +5,20 @@ import SubComponent from "../../utils/SubComponent";
 
 const SelectedSub = () => {
   const userLogin = useSelector((sub) => sub.login);
-  const {id} =useParams()
-  const [member, setMember] = useState(
-    { _id: 1, name: "", email: "", city: "" },
-  );
+  const { id } = useParams();
+  const [member, setMember] = useState({
+    _id: 1,
+    name: "",
+    email: "",
+    city: "",
+  });
   const getAllMembersInRedux = useSelector((sub) => sub.members);
   useEffect(() => {
-    setMember(getAllMembersInRedux.find(mem=>mem._id === id));
+    setMember(getAllMembersInRedux.find((mem) => mem._id === id));
   }, [id]);
 
-    return (
-      <div className="bg-black text-white flex flex-col items-center pt-6">
+  return (
+    <div className="bg-black text-white flex flex-col items-center pt-6">
       <h1 className="text-6xl text-center font-bold">selected Subscription</h1>
       <div className=" w-[95%] border-b-2 border-gray-300 mb-2 text-lg flex  justify-center items-center py-4">
         <div className="h-16 flex justify-center items-center">
@@ -36,7 +39,7 @@ const SelectedSub = () => {
         </div>
       </div>
       <div className="w-[90%] flex justify-center">
-      <SubComponent member={member}/>
+        <SubComponent member={member} />
       </div>
     </div>
   );

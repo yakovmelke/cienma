@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateMovie } from "../../apiData/MoviesApiData";
-import {toast} from 'react-toastify'
+
 import AddAndEditMovie from "../../utils/AddAndEditMovie";
+import { ErrorMsg } from "../../utils/ErrorMsg";
 
 export default function EditMovie() {
   const navigate = useNavigate();
@@ -16,13 +17,7 @@ export default function EditMovie() {
     genres: "",
     premiered: "",
   });
-  const toastObj ={
-    position:"bottom-right",
-    autoClose:8000,
-    pauseOnHover:true,
-    draggable:true,
-    theme:"dark"
-  }
+ 
   useEffect(() => {
     const currentMovie = moviesFromRedux.find((movie) => movie._id === id);
     setMovie({ ...currentMovie, genres: currentMovie?.genres.length });
@@ -63,7 +58,7 @@ export default function EditMovie() {
       updateMovie({ ...movie, genres: arr }, dispatch);
       navigate("/main_page/movies");
     } else {
-      toast.error("please complete all fields",toastObj);
+     ErrorMsg("please complete all fields");
     }
   }
   return (

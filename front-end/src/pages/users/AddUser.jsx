@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../apiData/UsersApiData";
 import AddAndEditUser from "../../utils/AddAndEditUser";
-import {toast} from 'react-toastify'
+import { ErrorMsg } from "../../utils/ErrorMsg";
 
 export default function AddUser() {
   const navigate = useNavigate();
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
   const AllDataFromRedux = useSelector((element) => element);
   const [user, setUser] = useState({
     id: "",
@@ -35,17 +35,10 @@ export default function AddUser() {
       setUser({ ...user, [e.target.name]: e.target.checked });
     }
   };
-  const toastObj ={
-    position:"bottom-right",
-    autoClose:8000,
-    pauseOnHover:true,
-    draggable:true,
-    theme:"dark"
-  }
+
   const permissionsChanges = (e) => {
     let finalPer = { ...permissions, [e.target.name]: e.target.checked };
     if (
-      
       finalPer.createSubscriptions === true ||
       finalPer.updateSubscriptions === true ||
       finalPer.deleteSubscriptions === true
@@ -54,7 +47,6 @@ export default function AddUser() {
     }
 
     if (
-      
       finalPer.createMovies === true ||
       finalPer.deleteMovies === true ||
       finalPer.updateMovies === true
@@ -76,26 +68,33 @@ export default function AddUser() {
       user.id.length > 7
     ) {
       const finalObj = { ...user, permissions };
-      createUser(finalObj,dispatch);
-      
+      createUser(finalObj, dispatch);
+
       navigate("/main_page/users");
     } else {
       if (checkUserName) {
-        toast.error("Please enter a different user name",toastObj);
+        ErrorMsg("Please enter a different user name");
       }
       if (checkUserId) {
-        toast.error("Please enter a different employ number",toastObj);
+        ErrorMsg("Please enter a different employ number");
       }
       if (user.userName.length < 8) {
-        toast.error("User name must be 8 or more digits",toastObj);
+        ErrorMsg("User name must be 8 or more digits");
       }
       if (user.id.length < 8) {
-        toast.error("Employ number must be 8 or more digits",toastObj);
+        ErrorMsg("Employ number must be 8 or more digits");
       }
     }
   }
 
   return (
-    <AddAndEditUser permissionsChanges={permissionsChanges} user={user} permissions={permissions} updateEdit={saveEdit} userChanges={userChanges} componentName={'Add User'}/>
+    <AddAndEditUser
+      permissionsChanges={permissionsChanges}
+      user={user}
+      permissions={permissions}
+      updateEdit={saveEdit}
+      userChanges={userChanges}
+      componentName={"Add User"}
+    />
   );
 }

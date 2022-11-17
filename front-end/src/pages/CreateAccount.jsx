@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUsersData, updateUserPassword } from "../apiData/UsersApiData";
-import {toast} from 'react-toastify'
+import { ErrorMsg } from "../utils/ErrorMsg";
 
 export default function CreateAccount() {
   const navigate = useNavigate();
@@ -14,13 +14,6 @@ export default function CreateAccount() {
     userName: "",
     password: "",
   });
-  const toastObj ={
-    position:"bottom-right",
-    autoClose:8000,
-    pauseOnHover:true,
-    draggable:true,
-    theme:"dark"
-  }
 
   useEffect(() => {
     getUsersData(dispatch);
@@ -42,16 +35,16 @@ export default function CreateAccount() {
       );
       if (userGoIn == undefined || userGoIn.password !== "") {
         console.log(userGoIn);
-        toast.error("something go wrong please contact the manager ",toastObj);
+        ErrorMsg("something go wrong please contact the manager ");
       } else if (userNameAndPassword.password.length < 7) {
-        toast.error("please enter password that is length equal or greater 8 ",toastObj);
+        ErrorMsg("please enter password that is length equal or greater 8 ");
       } else {
         updateUserPassword({ ...userNameAndPassword, _id: userGoIn.id });
         navigate("/");
         window.location.reload();
       }
     } else {
-      toast.error("please enter your user name ",toastObj);
+      ErrorMsg("please enter your user name ");
     }
   }
 

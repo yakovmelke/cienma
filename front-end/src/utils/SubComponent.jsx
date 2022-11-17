@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteMember } from "../apiData/MembersApiData";
 import { createSubscription, updateSubscription } from "../apiData/SubApiData";
-import {toast} from 'react-toastify'
+import { ErrorMsg } from "./ErrorMsg";
+
 
 const SubComponent = ({ member }) => {
   const navigate = useNavigate();
@@ -20,13 +21,7 @@ const SubComponent = ({ member }) => {
       return false;
     }
   };
-  const toastObj ={
-    position:"bottom-right",
-    autoClose:8000,
-    pauseOnHover:true,
-    draggable:true,
-    theme:"dark"
-  }
+
   const handleSelect = (e) => {
     setSubToNewMovie({ ...subToNewMovie, [e.target.name]: e.target.value });
   };
@@ -34,7 +29,7 @@ const SubComponent = ({ member }) => {
   const [subToNewMovie, setSubToNewMovie] = useState({ movieId: "", date: "" });
   const saveSubToNewMovie = (member) => {
     if (subToNewMovie.movieId === "" || subToNewMovie.date === "") {
-      toast.error("Please select movie and date",toastObj);
+      ErrorMsg("Please select movie and date");
     } else {
       const memberSubscribe = findMemberMovies(member._id);
       if (memberSubscribe) {

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateUser } from "../../apiData/UsersApiData";
 import AddAndEditUser from "../../utils/AddAndEditUser";
-import {toast} from 'react-toastify'
+
+import { ErrorMsg } from "../../utils/ErrorMsg";
 
 export default function EditUsers() {
   const navigate = useNavigate();
@@ -13,14 +14,7 @@ export default function EditUsers() {
   const getUserFromRedux = useSelector((user) =>
     user.users.find((ele) => ele.id == id)
   );
-  const toastObj ={
-    position:"bottom-right",
-    autoClose:8000,
-    pauseOnHover:true,
-    draggable:true,
-    theme:"dark"
-  }
-
+ 
   const [user, setUser] = useState({
     id: 1,
     firstName: "",
@@ -75,7 +69,7 @@ export default function EditUsers() {
    user.lastName=== ""||
    user.userName=== ""||
    user.sessionTimeOut=== ""){
-    toast.error("Please complete all fields",toastObj)
+    ErrorMsg("Please complete all fields")
    }else{
 
      const finalObj = {...user,permissions:permissions}

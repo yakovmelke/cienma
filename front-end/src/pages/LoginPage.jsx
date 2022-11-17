@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersData } from "../apiData/UsersApiData";
-import {toast} from 'react-toastify'
+import { ErrorMsg } from "../utils/ErrorMsg";
 
 
 export default function LoginPage() {
@@ -14,13 +14,7 @@ export default function LoginPage() {
     userName: "",
     password: "",
   });
-const toastObj ={
-  position:"bottom-right",
-  autoClose:8000,
-  pauseOnHover:true,
-  draggable:true,
-  theme:"dark"
-}
+
 
   useEffect(() => {
     getUsersData(dispatch);
@@ -40,12 +34,12 @@ const toastObj ={
       (user) => user.userName === userNameAndPassword.userName
     );
     if (userGoIn == undefined) {
-      toast.error("user name or password was wrong",toastObj);
+      ErrorMsg("user name or password was wrong");
     } else if (
       userGoIn.password !== userNameAndPassword.password ||
       userNameAndPassword.password.length < 8
     ) {
-      toast.error("user name or password was wrong",toastObj);
+      ErrorMsg("user name or password was wrong");
     } else {
       console.log(userGoIn);
       const action = { type: "LOGIN", payload: userGoIn };

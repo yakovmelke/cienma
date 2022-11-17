@@ -4,10 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateMember } from "../../apiData/MembersApiData";
 import AddAndEditSub from "../../utils/AddAndEditSub";
+import { ErrorMsg } from "../../utils/ErrorMsg";
 
 export default function EditSubscription() {
   const navigate = useNavigate();
-  const dispatch =useDispatch()
+  const dispatch = useDispatch();
   const { id } = useParams();
   const allMembers = useSelector((data) => data.members);
 
@@ -24,15 +25,20 @@ export default function EditSubscription() {
     setMember({ ...member, [e.target.name]: e.target.value });
   };
   function saveMember() {
-    if(member.name !="" && member.email !="" &&member.city!=""){
-      updateMember(member,dispatch)
+    if (member.name != "" && member.email != "" && member.city != "") {
+      updateMember(member, dispatch);
       navigate("/main_page/subscriptions");
-    }else{
-      alert("please complete all fields ")
+    } else {
+      ErrorMsg("please complete all fields ");
     }
   }
 
   return (
-    <AddAndEditSub member={member}handleInput={handleInput} saveMember={saveMember} componentName={"Edit Member"}/>
+    <AddAndEditSub
+      member={member}
+      handleInput={handleInput}
+      saveMember={saveMember}
+      componentName={"Edit Member"}
+    />
   );
 }

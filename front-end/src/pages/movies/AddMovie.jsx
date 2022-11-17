@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createMovies } from "../../apiData/MoviesApiData";
 import {toast} from 'react-toastify'
 import AddAndEditMovie from "../../utils/AddAndEditMovie";
+import { ErrorMsg } from "../../utils/ErrorMsg";
 
 export default function AddMovie() {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ export default function AddMovie() {
       createMovies({ ...movie, genres: arr }, dispatch);
       navigate("/main_page/movies");
     } else {
-      toast.error("please complete all fields ");
+      ErrorMsg("please complete all fields ");
     }
   }
 

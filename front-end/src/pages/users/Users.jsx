@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteUser, getUsersData } from "../../apiData/UsersApiData";
+import { deleteUser } from "../../apiData/UsersApiData";
 
 export default function Users() {
   const [users, setUsers] = useState([
@@ -15,7 +15,7 @@ export default function Users() {
       permissions: ["a", "b"],
     },
   ]);
- 
+
   const getUsersFromRedux = useSelector((user) => user.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,44 +23,36 @@ export default function Users() {
   useEffect(() => {
     setUsers(getUsersFromRedux);
   }, [getUsersFromRedux]);
-const checkPermissionName = (permission)=>{
-  switch (permission) {
-    case "viewSubscriptions":
-      
-      return "View Subscriptions"
-  
-    case "createSubscriptions":
-      
-      return "Create Subscriptions"
-  
-    case "updateSubscriptions":
-      
-      return "Update Subscriptions"
-  
-    case "deleteSubscriptions":
-      
-      return "Delete Subscriptions"
-  
-    case "viewMovies":
-      
-      return "View Movies"
-  
-    case "createMovies":
-      
-      return "Create Movies"
-  
-    case "updateMovies":
-      
-      return "Update Movies"
-  
-    case "deleteMovies":
-      
-      return "Delete Movies"
-  
-    default:
-     return ""
-  }
-}
+  const checkPermissionName = (permission) => {
+    switch (permission) {
+      case "viewSubscriptions":
+        return "View Subscriptions";
+
+      case "createSubscriptions":
+        return "Create Subscriptions";
+
+      case "updateSubscriptions":
+        return "Update Subscriptions";
+
+      case "deleteSubscriptions":
+        return "Delete Subscriptions";
+
+      case "viewMovies":
+        return "View Movies";
+
+      case "createMovies":
+        return "Create Movies";
+
+      case "updateMovies":
+        return "Update Movies";
+
+      case "deleteMovies":
+        return "Delete Movies";
+
+      default:
+        return "";
+    }
+  };
 
   return (
     <div className="bg-black text-white flex flex-col items-center pt-6">
@@ -96,14 +88,13 @@ const checkPermissionName = (permission)=>{
               <p>User Name:{user.userName}</p>
               <p>Session time out:{user.sessionTimeOut}</p>
               <p>Created date:{user.createdDate}</p>
-              <div className="flex flex-wrap justify-center items-center" >
+              <div className="flex flex-wrap justify-center items-center">
                 <p>Permissions: </p>
                 <ul className="flex flex-wrap justify-center items-center">
                   {permissionsKeys.map((per, i) => (
                     <li key={i}>
                       {checkPermissionName(per)}{" "}
-                      <input 
-                      
+                      <input
                         type="checkbox"
                         name={per}
                         readOnly
@@ -114,16 +105,19 @@ const checkPermissionName = (permission)=>{
                 </ul>
               </div>
               <div className="h-16 flex justify-center items-center">
-
-              <button  className="mx-2 border-2 border-black bg-green-600 p-2 rounded-lg hover:bg-green-400 duration-500 hover:border-blue-400 hover:p-3" 
-                onClick={() => navigate(`/main_page/edit_user/${user.id}`)}
+                <button
+                  className="mx-2 border-2 border-black bg-green-600 p-2 rounded-lg hover:bg-green-400 duration-500 hover:border-blue-400 hover:p-3"
+                  onClick={() => navigate(`/main_page/edit_user/${user.id}`)}
                 >
-                Edit
-              </button>
-              <button  className="mx-2 border-2 border-black bg-red-600 p-2 rounded-lg hover:bg-red-400 duration-500 hover:border-blue-400 hover:p-3" onClick={() => deleteUser(user.id, dispatch)}>
-                Delete
-              </button>
-                </div>
+                  Edit
+                </button>
+                <button
+                  className="mx-2 border-2 border-black bg-red-600 p-2 rounded-lg hover:bg-red-400 duration-500 hover:border-blue-400 hover:p-3"
+                  onClick={() => deleteUser(user.id, dispatch)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           );
         })}

@@ -54,7 +54,7 @@ const SubComponent = ({ member }) => {
   };
 
   return (
-    <div className="w-full sm:w-[45%] md:w-[30%] lg:w-[23%] p-3 border border-stone-300 rounded-lg bg-slate-200 text-black bg-opacity-60  shadow-lg shadow-white mb-6 text-lg">
+    <div className="w-full sm:w-[45%] md:w-[30%] lg:w-[23%] p-3 border border-stone-300 rounded-lg bg-slate-200 text-black bg-opacity-60  shadow-lg shadow-white mb-6 text-center hover:bg-red-500 hover:text-white duration-500">
       {userLogin.permissions.viewSubscriptions ? (
         <div key={member?._id}>
           <h4>{member?.name}</h4>

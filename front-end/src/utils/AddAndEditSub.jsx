@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 const AddAndEditSub = ({member,handleInput,saveMember,componentName}) => {
     const navigate = useNavigate();
     return (
-    <div className="h-screen bg-gray-700 text-white flex flex-col  items-center pt-6">
+    <div className="h-screen bg-black text-white flex flex-col  items-center pt-6">
       <div
-        className="border-2 p-4 rounded-lg h-[80%] w-[90%] md:w-[70%] 
+        className="border-2 p-4 rounded-lg h-[80%] w-[90%] sm:w-[70%] md:w-[60%] 
       lg:w-[50%] bg-slate-500 flex flex-col justify-between items-center "
       >
         <h1 className="text-6xl text-center font-bold">{componentName}</h1>

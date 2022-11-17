@@ -45,18 +45,18 @@ export default function AddUser() {
   const permissionsChanges = (e) => {
     let finalPer = { ...permissions, [e.target.name]: e.target.checked };
     if (
-      finalPer.viewSubscriptions === false &&
-      finalPer.createSubscriptions === true &&
-      finalPer.updateSubscriptions === true &&
+      
+      finalPer.createSubscriptions === true ||
+      finalPer.updateSubscriptions === true ||
       finalPer.deleteSubscriptions === true
     ) {
       finalPer = { ...finalPer, viewSubscriptions: true };
     }
 
     if (
-      finalPer.viewMovies === false &&
-      finalPer.createMovies === true &&
-      finalPer.deleteMovies === true &&
+      
+      finalPer.createMovies === true ||
+      finalPer.deleteMovies === true ||
       finalPer.updateMovies === true
     ) {
       finalPer = { ...finalPer, viewMovies: true };

@@ -48,15 +48,15 @@ const MovieComponent = ({ movie }) => {
           <p> {movie?.premiered}</p>
           <div className="flex ">
             
-            <ul className="flex flex-wrap">
+            <ul className="w-full justify-center flex flex-wrap">
               {movie?.genres.map((genre, i) => (
-                <li className="mx-1" key={i}>
+                <li className="mx-1 text-center " key={i}>
                   {genre}
                 </li>
               ))}
             </ul>
           </div>
-          <div className="h-16 flex justify-center items-center">
+          <div className="h-16 flex justify-center  items-center">
             {userLogin.permissions.updateMovies && (
               <button
                 className="mx-2 border-2 border-black bg-green-600 p-2 rounded-lg hover:bg-green-400 duration-500 hover:border-blue-400 hover:p-3"

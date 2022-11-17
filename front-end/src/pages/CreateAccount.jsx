@@ -56,7 +56,7 @@ export default function CreateAccount() {
   }
 
   return (
-    <div className="h-screen w-full flex flex-col justify-center items-center  bg-[url('https://thurrott.s3.amazonaws.com/wp-content/uploads/sites/2/2022/01/14172326/netflix.jpg')] bg-cover bg-center">
+    <div className=" h-screen w-full flex flex-col justify-center items-center  bg-[url('https://thurrott.s3.amazonaws.com/wp-content/uploads/sites/2/2022/01/14172326/netflix.jpg')] bg-cover bg-center">
       <div className="  bg-opacity-80 d-flex w-[90%] sm:w-[50%] lg:w-[30%] h-[75%] bg-gray-300 rounded-lg border shadow-2xl shadow-black">
         <div className="px-2 h-[95%] flex flex-col justify-between  items-center w-full ">
           <h3 className="font-bold my-9 text-2xl">Create Account</h3>
@@ -64,7 +64,7 @@ export default function CreateAccount() {
             className="w-full flex flex-col justify-between  h-[70%]"
             onSubmit={checkUser}
           >
-            <div className=" flex flex-col text-gray-800 font-bold py-2">
+            <div className="text-lg flex flex-col text-gray-800 font-bold py-2">
               <label>User Name</label>
               <input
                 className="rounded-lg text-center text-lg bg-gray-800 mt-2 p-2  focus:bg-gray-700 focus:outline-none text-white "
@@ -73,7 +73,7 @@ export default function CreateAccount() {
                 onChange={handelInput}
               />
             </div>
-            <div className=" flex flex-col text-gray-800 font-bold py-2">
+            <div className="text-lg flex flex-col text-gray-800 font-bold py-2">
               <label>Password</label>
               <input
                 className="rounded-lg text-center text-white text-lg bg-gray-800 mt-2 p-2  focus:bg-gray-700 focus:outline-none"

@@ -63,7 +63,7 @@ const checkPermissionName = (permission)=>{
 }
 
   return (
-    <div className="bg-gray-700 text-white flex flex-col items-center pt-6">
+    <div className="bg-black text-white flex flex-col items-center pt-6">
       <h1 className="text-6xl text-center font-bold">Users</h1>
       <div className=" w-[95%] border-b-2 border-gray-300 mb-2 text-lg flex  justify-center items-center py-4">
         <div className="h-16 flex justify-center items-center">
@@ -81,14 +81,14 @@ const checkPermissionName = (permission)=>{
           </Link>
         </div>
       </div>
-      <div className="w-[95%] flex flex-wrap justify-around mx-5">
+      <div className="w-[95%] flex flex-wrap justify-around mx-5 text-center">
         {users.map((user) => {
           const permissionsKeys = Object.keys(user.permissions);
           const permissionsValues = Object.values(user.permissions);
           return (
             <div
               key={user.id}
-              className="w-full sm:w-[45%] md:w-[30%] lg:w-[26%] p-3 border border-stone-300 rounded-lg bg-slate-200 text-black bg-opacity-60  shadow-lg shadow-white mb-6 text-base"
+              className="w-full sm:w-[45%] md:w-[30%] lg:w-[23%] p-3 border border-stone-300 rounded-lg bg-slate-200 text-black bg-opacity-60  shadow-lg shadow-white mb-6 text-center hover:bg-red-500 hover:text-white duration-500"
             >
               <p>
                 Name:{user?.firstName} {user?.lastName}
@@ -96,9 +96,9 @@ const checkPermissionName = (permission)=>{
               <p>User Name:{user.userName}</p>
               <p>Session time out:{user.sessionTimeOut}</p>
               <p>Created date:{user.createdDate}</p>
-              <div className="flex flex-wrap" >
+              <div className="flex flex-wrap justify-center items-center" >
                 <p>Permissions: </p>
-                <ul className="flex flex-wrap">
+                <ul className="flex flex-wrap justify-center items-center">
                   {permissionsKeys.map((per, i) => (
                     <li key={i}>
                       {checkPermissionName(per)}{" "}

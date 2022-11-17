@@ -63,7 +63,7 @@ const toastObj ={
             className="border-b-4 w-full flex flex-col justify-between border-gray-400 rounded-sm h-[70%]"
             onSubmit={checkUser}
           >
-            <div className=" flex flex-col text-gray-800 font-bold py-2">
+            <div className=" text-lg flex flex-col text-gray-800 font-bold py-2">
               <label>User Name</label>
               <input
                 className="rounded-lg text-center text-lg bg-gray-700 mt-2 p-2  focus:bg-gray-800 focus:outline-none text-white "
@@ -72,7 +72,7 @@ const toastObj ={
                 onChange={handelInput}
               />
             </div>
-            <div className=" flex flex-col text-gray-800 font-bold py-2">
+            <div className="text-lg flex flex-col text-gray-800 font-bold py-2">
               <label>Password</label>
               <input
                 className="rounded-lg text-center text-white text-lg bg-gray-700 mt-2 p-2  focus:bg-gray-800 focus:outline-none"
@@ -90,7 +90,7 @@ const toastObj ={
             </button>
           </form>
         </div>
-        <p className="font-semibold text-center ">
+        <p className="font-semibold text-lg text-center ">
           New User? :{" "}
           <span
             className="text-red-600 cursor-pointer"

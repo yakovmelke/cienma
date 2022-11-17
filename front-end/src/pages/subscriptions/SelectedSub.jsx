@@ -15,7 +15,7 @@ const SelectedSub = () => {
   }, [id]);
 
     return (
-      <div className="bg-gray-700 text-white flex flex-col items-center pt-6">
+      <div className="bg-black text-white flex flex-col items-center pt-6">
       <h1 className="text-6xl text-center font-bold">selected Subscription</h1>
       <div className=" w-[95%] border-b-2 border-gray-300 mb-2 text-lg flex  justify-center items-center py-4">
         <div className="h-16 flex justify-center items-center">

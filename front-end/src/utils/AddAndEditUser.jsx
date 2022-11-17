@@ -36,14 +36,15 @@ const AddAndEditUser = ({ user, updateEdit, userChanges, componentName ,permissi
   const permissionsKeys = Object.keys(permissions);
   const permissionsValues = Object.values(permissions);
   return (
-    <div className="h-screen  bg-gray-700 text-white flex flex-col  items-center pt-6">
+    <div className="h-screen bg-black text-white flex flex-col  items-center pt-6 ">
       <div
-        className="border-2 p-4 rounded-lg h-[85%] w-[90%] md:w-[70%] 
+        className="border-2 p-4 rounded-lg h-[90%] w-[90%] sm:w-[70%] md:w-[60%] 
       lg:w-[50%] bg-slate-500 flex flex-col justify-between items-center "
       >
         <h1 className="text-6xl text-center font-bold">{componentName}</h1>
-        <div className="flex flex-col h-[90%] justify-around">
-          {componentName === 'Add User'&&<div className=" my-2 flex items-center text-sm font-bold">
+        <div className="flex flex-col h-[90%] justify-around items-center">
+          {componentName === 'Add User'&&<div className="w-[90%] sm:w-[70%] md:w-[60%] 
+      lg:w-[50%] my-2 flex items-center text-sm font-bold justify-center">
             <p>Employ Number : </p>
             <input
              className="bg-gray-800 pl-2 grow border rounded-md focus:bg-blue-500 "
@@ -53,7 +54,8 @@ const AddAndEditUser = ({ user, updateEdit, userChanges, componentName ,permissi
             />
           </div>
             }
-          <div className=" my-2 flex items-center text-sm font-bold">
+          <div className="w-[90%] sm:w-[70%] md:w-[60%] 
+      lg:w-[50%] my-2 flex items-center text-sm font-bold justify-center">
             <p>First Name : </p>
             <input
              className="bg-gray-800 pl-2 grow border rounded-md focus:bg-blue-500 "
@@ -62,7 +64,8 @@ const AddAndEditUser = ({ user, updateEdit, userChanges, componentName ,permissi
               defaultValue={user?.firstName}
             />
           </div>
-          <div  className=" my-2 flex items-center text-sm font-bold">
+          <div  className="w-[90%] sm:w-[70%] md:w-[60%] 
+      lg:w-[50%] my-2 flex items-center text-sm font-bold justify-center">
            
             <p>Last Name : </p>
             <input
@@ -73,7 +76,8 @@ const AddAndEditUser = ({ user, updateEdit, userChanges, componentName ,permissi
             />
           </div>
           {user.createdDate && (
-            <div  className=" my-2 flex items-center text-sm font-bold">
+            <div  className="w-[90%] sm:w-[70%] md:w-[60%] 
+      lg:w-[50%] my-2 flex items-center text-sm font-bold justify-center">
               <p>Created date:</p>
               <input
                 className="bg-gray-800 pl-2 grow border rounded-md focus:bg-blue-500 "
@@ -83,7 +87,8 @@ const AddAndEditUser = ({ user, updateEdit, userChanges, componentName ,permissi
               />
             </div>
           )}
-          <div  className=" my-2 flex items-center text-sm font-bold">
+          <div  className="w-[90%] sm:w-[70%] md:w-[60%] 
+      lg:w-[50%] my-2 flex items-center text-sm font-bold justify-center">
             <p>User Name :</p>
             <input
               className="bg-gray-800 pl-2 grow border rounded-md focus:bg-blue-500 "
@@ -92,7 +97,8 @@ const AddAndEditUser = ({ user, updateEdit, userChanges, componentName ,permissi
               defaultValue={user?.userName}
             />
           </div>
-          <div  className=" my-2 flex items-center text-sm font-bold">
+          <div  className="w-[90%] sm:w-[70%] md:w-[60%] 
+      lg:w-[50%] my-2 flex items-center text-sm font-bold justify-center">
             <p>Session time out:</p>
             <input
               className="bg-gray-800 pl-2 grow border rounded-md focus:bg-blue-500 "
@@ -101,7 +107,8 @@ const AddAndEditUser = ({ user, updateEdit, userChanges, componentName ,permissi
               defaultValue={user?.sessionTimeOut}
             />
           </div>
-          <div  className=" my-2 flex items-center text-sm font-bold">
+          <div  className="w-[90%] sm:w-[70%] md:w-[60%] 
+      lg:w-[50%] my-2 flex items-center text-sm font-bold justify-center">
             <p>Admin:</p>
             <input
               onChange={userChanges}
@@ -111,9 +118,9 @@ const AddAndEditUser = ({ user, updateEdit, userChanges, componentName ,permissi
             />
           </div>
 
-          <div className="flex flex-wrap">
+          <div className="flex justify-center flex-wrap">
             <p>Permissions: </p>
-            <ul className="flex flex-wrap items-center">
+            <ul className="flex flex-wrap justify-center items-center">
               {permissionsKeys.map((per, i) => (
                 <li className="flex flex-wrap items-center mx-3" key={i}>
                   {checkPermissionName(per)}:

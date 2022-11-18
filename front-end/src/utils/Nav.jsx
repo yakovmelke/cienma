@@ -11,23 +11,8 @@ export default function Nav({ admin = true }) {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const logOut = () => {
-    const action = {
-      type: "LOGIN",
-      payload: {
-        admin: false,
-        permissions: {
-          viewSubscriptions: false,
-          createSubscriptions: false,
-          updateSubscriptions: false,
-          deleteSubscriptions: false,
-          viewMovies: false,
-          createMovies: false,
-          updateMovies: false,
-          deleteMovies: false,
-        },
-      },
-    };
-    dispatch(action);
+    window.location.reload();
+    
   };
   return (
     <div className="mb-20 ">

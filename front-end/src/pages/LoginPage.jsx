@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersData } from "../apiData/UsersApiData";
 import { ErrorMsg } from "../utils/ErrorMsg";
+import RememberMe from "../utils/RememberMe";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ export default function LoginPage() {
     userName: "",
     password: "",
   });
+  const [remember, setRemember] = useState(false);
 
   useEffect(() => {
     getUsersData(dispatch);
@@ -25,6 +27,21 @@ export default function LoginPage() {
       [e.target.name]: e.target.value,
     });
   }
+  const handleCheckBox = () => {
+    if (
+      userNameAndPassword.userName !== "" &&
+      userNameAndPassword.password !== ""
+    ) {
+      if (remember === true) {
+        localStorage.removeItem("remember-me");
+      }
+      setRemember(!remember);
+    } else {
+      localStorage.removeItem("remember-me");
+      ErrorMsg("Please complete all fields first");
+      setRemember(false);
+    }
+  };
 
   function checkUser(e) {
     e.preventDefault();
@@ -40,6 +57,12 @@ export default function LoginPage() {
       ErrorMsg("user name or password was wrong");
     } else {
       const action = { type: "LOGIN", payload: userGoIn };
+      if (remember) {
+        localStorage.setItem(
+          "remember-me",
+          JSON.stringify(userNameAndPassword)
+        );
+      }
       dispatch(action);
       navigate("/main_page");
     }
@@ -58,6 +81,7 @@ export default function LoginPage() {
               <label>User Name</label>
               <input
                 className="rounded-lg text-center text-lg bg-gray-700 mt-2 p-2  focus:bg-gray-800 focus:outline-none text-white "
+                defaultValue={userNameAndPassword.userName}
                 type="text"
                 name="userName"
                 onChange={handelInput}
@@ -67,11 +91,18 @@ export default function LoginPage() {
               <label>Password</label>
               <input
                 className="rounded-lg text-center text-white text-lg bg-gray-700 mt-2 p-2  focus:bg-gray-800 focus:outline-none"
+                defaultValue={userNameAndPassword.password}
                 type="password"
                 name="password"
                 onChange={handelInput}
               />
             </div>
+            <RememberMe
+              handleCheckBox={handleCheckBox}
+              setRemember={setRemember}
+              remember={remember}
+              setUserNameAndPassword={setUserNameAndPassword}
+            />
             <button
               className="opacity-100 border-solid  my-3
             rounded-md p-2 bg-green-500 text-white font-bold text-xl shadow-md shadow-gray-400"

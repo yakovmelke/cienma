@@ -50,9 +50,6 @@ const SavedShows = () => {
         `http://localhost:8001/subscriptions/${findMember._id}`,
         {...findMember,movies:finalMoviesArray}
       );
-
-      console.log(finalMoviesArray);
-      console.log(finalMoviesArray);
      await findMovies();
     } catch (error) {
       console.log(error);

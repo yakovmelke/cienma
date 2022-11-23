@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -7,7 +7,7 @@ export function AuthContextProvider({ children }) {
 
   async function signUp(obj) {
     const { data: members } = await axios.get("http://localhost:8001/members");
-    console.log(members[0]);
+   
     const memberUserName = members.find(
       (element) => element.userName === obj.userName
     );
@@ -17,7 +17,6 @@ export function AuthContextProvider({ children }) {
 
     if (!memberUserName && !memberEmail) {
        const result = await axios.post("http://localhost:8001/members",obj);
-      console.log(result);
       return result
     }
     if(memberUserName){
@@ -39,6 +38,7 @@ export function AuthContextProvider({ children }) {
   }
   function logOut() {
     setUser({});
+    return true;
   }
 
   return (

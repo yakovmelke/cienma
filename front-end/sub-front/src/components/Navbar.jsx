@@ -39,6 +39,14 @@ const Navbar = () => {
           open ? "top-16 opacity-90" : "top-[-490px] md:opacity-90 opacity-0"
         }`}
       >
+        <li
+          onClick={() => setOpen(!open)}
+          className="md:ml-8 text-xl md:my-0 my-7 flex items-center "
+        >
+          <Link to="/allMovies">
+            <button className="text-white pr-4">All Movies</button>
+          </Link>
+        </li>
         {user?.email ? (
           <>
             <li

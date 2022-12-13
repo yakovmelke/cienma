@@ -23,15 +23,15 @@ const Main = () => {
   }, [movies.length]);
   
   return (
-    <div className="w-full h-[550px] text-white">
-      <div className="w-full h-full">
-        <div className="absolute w-full h-[550px] bg-gradient-to-r from-black"></div>
+    <div className="w-screen h-[550px] text-white">
+      <div className="w-screen h-full flex justify-center items-center">
+        <div className="absolute w-screen h-[550px] bg-gradient-to-r from-black "></div>
         <img
-          className="w-full h-full  object-contain"
+          className="w-full md:w-[60%] h-full  object-center"
           src={movie?.image}
           alt={movie?.name}
         />
-        <div className="absolute w-full top-[20%] p-4 md:p-8">
+        <div className="absolute w-screen top-[20%] p-4 md:p-8">
           <h1 className="text-3xl md:text-5xl font-bold ">{movie?.name}</h1>
         </div>
       </div>

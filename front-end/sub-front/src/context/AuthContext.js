@@ -1,28 +1,37 @@
 import { createContext, useContext, useState } from "react";
 import axios from "axios";
+import { useEffect } from "react";
 
 const AuthContext = createContext();
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
+  const [movies, setMovies] = useState([]);
+
+  async function getAllMovies() {
+    const { data } = await axios.get("http://localhost:8001/movies");
+    setMovies(data);
+    return data
+  }
+  useEffect(()=>{
+    getAllMovies()
+  },[user])
 
   async function signUp(obj) {
     const { data: members } = await axios.get("http://localhost:8001/members");
-   
+
     const memberUserName = members.find(
       (element) => element.userName === obj.userName
     );
-    const memberEmail = members.find(
-      (element) => element.email === obj.email
-    );
+    const memberEmail = members.find((element) => element.email === obj.email);
 
     if (!memberUserName && !memberEmail) {
-       const result = await axios.post("http://localhost:8001/members",obj);
-      return result
+      const result = await axios.post("http://localhost:8001/members", obj);
+      return result;
     }
-    if(memberUserName){
+    if (memberUserName) {
       throw "The user name is already taken";
     }
-    if(memberEmail){
+    if (memberEmail) {
       throw "The email is already taken";
     }
   }
@@ -42,7 +51,7 @@ export function AuthContextProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ signUp, logIn, logOut, user }}>
+    <AuthContext.Provider value={{ signUp, logIn, logOut, user ,movies,getAllMovies}}>
       {children}
     </AuthContext.Provider>
   );

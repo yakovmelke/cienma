@@ -7,18 +7,14 @@ import Loading from "./Loading";
 
 const SavedShows = () => {
   const [movies, setMovies] = useState([]);
-  const { user } = UserAuth();
+  const { user, movies: moviesData } = UserAuth();
   const [loading, setLoading] = useState(false);
 
-  
-  
   const findMovies = async () => {
     const { data: subscriptions } = await axios.get(
       `http://localhost:8001/subscriptions`
     );
-    const { data: moviesData } = await axios.get(
-      `http://localhost:8001/movies`
-    );
+
     const findMember = subscriptions.find(
       (member) => member.memberId === user._id
     );
@@ -27,14 +23,13 @@ const SavedShows = () => {
         return moviesData.find((ele) => ele._id === movie.movieId);
       });
       setMovies(finalMoviesArray);
-       setTimeout(() => {
-        setLoading(true)
+      setTimeout(() => {
+        setLoading(true);
       }, 1000);
     }
   };
   useEffect(() => {
     findMovies();
-    console.log(user);
   }, [user._id]);
   const slideLeft = () => {
     let slider = document.getElementById("slider");
@@ -47,20 +42,20 @@ const SavedShows = () => {
 
   const deleteMovie = async (id) => {
     try {
-      
       const { data: subscriptions } = await axios.get(
         `http://localhost:8001/subscriptions`
       );
       const findMember = subscriptions.find(
         (member) => member.memberId === user._id
       );
-      console.log(findMember);
-     const finalMoviesArray = findMember.movies.filter((item) => item.movieId !== id);
-      const result = await axios.put(
-        `http://localhost:8001/subscriptions/${findMember._id}`,
-        {...findMember,movies:finalMoviesArray}
+      const finalMoviesArray = findMember.movies.filter(
+        (item) => item.movieId !== id
       );
-     await findMovies();
+      await axios.put(`http://localhost:8001/subscriptions/${findMember._id}`, {
+        ...findMember,
+        movies: finalMoviesArray,
+      });
+      await findMovies();
     } catch (error) {
       console.log(error);
     }

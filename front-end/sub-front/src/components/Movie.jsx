@@ -32,7 +32,7 @@ const Movie = ({ item }) => {
     if (sub) {
       if (like == false) {
         sub.movies.push({ movieId: item._id, date: today });
-        const { data: result } = await axios.put(
+         await axios.put(
           `http://localhost:8001/subscriptions/${sub._id}`,
           sub
         );

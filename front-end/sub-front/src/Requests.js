@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Row from "./components/Row";
+import { UserAuth } from "./context/AuthContext";
 
 const Requests = () => {
+  const {movies} = UserAuth() 
   
   const [genres, setGenres] = useState( {
     action: [],
@@ -20,8 +22,7 @@ const Requests = () => {
       anime: [],
       fantasy: [],
     };
-    const { data } = await axios.get("http://localhost:8001/movies");
-    data.forEach((element) => {
+    movies.forEach((element) => {
       element.genres.forEach((value) => {
         if (obj[value.toLowerCase()]) obj[value.toLowerCase()].push(element);
       });
@@ -32,10 +33,9 @@ const Requests = () => {
 
   useEffect(() => {
     data();
-  }, []);
+  }, [movies.length]);
   return (
     <div>
-    
       <Row rowID="1" title="Action" fetchURL={genres.action} />
       <Row rowID="2" title="Adventure" fetchURL={genres.adventure} />
       <Row rowID="3" title="Comedy" fetchURL={genres.comedy} />

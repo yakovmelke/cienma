@@ -2,20 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import Movie from "../components/Movie";
+import { UserAuth } from "../context/AuthContext";
 
 const AllMovies = () => {
-  const [movies, setMovies] = useState([]);
+    const { movies } = UserAuth();
   const [loading, setLoading] = useState(false);
-
-  const getAllMovies = async () => {
-    const { data } = await axios.get("http://localhost:8001/movies");
-    setMovies(data);
-  };
-
-  useEffect(() => {
-    getAllMovies();
-  }, [getAllMovies.length]);
-
+  
   useEffect(() => {
     setTimeout(() => {
       setLoading(true);

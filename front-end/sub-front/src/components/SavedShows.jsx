@@ -34,7 +34,8 @@ const SavedShows = () => {
   };
   useEffect(() => {
     findMovies();
-  }, []);
+    console.log(user);
+  }, [user._id]);
   const slideLeft = () => {
     let slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft - 500;

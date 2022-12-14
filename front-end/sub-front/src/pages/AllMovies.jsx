@@ -24,7 +24,7 @@ const AllMovies = () => {
 
   return (
     <>
-      <div className="pt-16">
+      <div className="pt-16 flex flex-wrap justify-around ">
         {movies.map((item, id) => {
           return <Movie item={item} key={id} />;
         })}

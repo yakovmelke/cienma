@@ -4,15 +4,12 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { UserAuth } from "../context/AuthContext";
 import axios from "axios";
 import { useEffect } from "react";
-import {ErrorMsg} from "./ErrorMsg"
-
+import { ErrorMsg } from "./ErrorMsg";
 
 const Movie = ({ item }) => {
   const [like, setLike] = useState(false);
   const [saved, setSaved] = useState(false);
   const { user } = UserAuth();
-  
-  
 
   const saveShow = async () => {
     if (user?.email) {
@@ -39,32 +36,25 @@ const Movie = ({ item }) => {
           `http://localhost:8001/subscriptions/${sub._id}`,
           sub
         );
-        
       } else {
         const filterMovies = sub.movies.filter(
           (movie) => movie.movieId != item._id
         );
-     
+
         const { data: result } = await axios.put(
           `http://localhost:8001/subscriptions/${sub._id}`,
           { ...sub, movies: filterMovies }
         );
-        
       }
     } else {
       sub = {};
       sub.memberId = user._id;
       sub.movies = [{ movieId: item._id, date: today }];
-      const { data: result } = await axios.post(
-        `http://localhost:8001/subscriptions`,
-        sub
-      );
-      
+      await axios.post(`http://localhost:8001/subscriptions`, sub);
     }
   };
 
   const checkMovie = async () => {
-    
     const { data: subscriptions } = await axios.get(
       `http://localhost:8001/subscriptions`
     );
@@ -79,10 +69,8 @@ const Movie = ({ item }) => {
     });
   };
   useEffect(() => {
-    if(user?._id){
-
+    if (user?._id) {
       checkMovie();
-      
     }
   }, [like]);
 
@@ -101,7 +89,6 @@ const Movie = ({ item }) => {
           )}{" "}
         </p>
       </div>
-     
     </div>
   );
 };

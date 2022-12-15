@@ -7,18 +7,17 @@ import Loading from "./Loading";
 
 const SavedShows = () => {
   const [movies, setMovies] = useState([]);
-  const { user, movies: moviesData } = UserAuth();
+  const {
+    user,
+    movies: moviesData,
+    subscriber: findMember,
+    findSubscription,
+  } = UserAuth();
   const [loading, setLoading] = useState(false);
 
   const findMovies = async () => {
-    const { data: subscriptions } = await axios.get(
-      `http://localhost:8001/subscriptions`
-    );
-
-    const findMember = subscriptions.find(
-      (member) => member.memberId === user._id
-    );
-    if (findMember) {
+    await findSubscription();
+    if (findMember.movies) {
       const finalMoviesArray = findMember.movies.map((movie) => {
         return moviesData.find((ele) => ele._id === movie.movieId);
       });
@@ -30,7 +29,7 @@ const SavedShows = () => {
   };
   useEffect(() => {
     findMovies();
-  }, [user._id]);
+  }, [findMember?.movies?.length]);
   const slideLeft = () => {
     let slider = document.getElementById("slider");
     slider.scrollLeft = slider.scrollLeft - 500;
@@ -42,12 +41,6 @@ const SavedShows = () => {
 
   const deleteMovie = async (id) => {
     try {
-      const { data: subscriptions } = await axios.get(
-        `http://localhost:8001/subscriptions`
-      );
-      const findMember = subscriptions.find(
-        (member) => member.memberId === user._id
-      );
       const finalMoviesArray = findMember.movies.filter(
         (item) => item.movieId !== id
       );

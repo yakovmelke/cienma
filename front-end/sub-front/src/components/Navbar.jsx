@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { AiFillCloseCircle, AiOutlineMenu } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
@@ -6,6 +7,7 @@ import { UserAuth } from "../context/AuthContext";
 const Navbar = () => {
   const { user, logOut } = UserAuth();
   const [open, setOpen] = useState(false);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
   const navigate = useNavigate();
   const handelLogout = () => {
     try {
@@ -16,6 +18,19 @@ const Navbar = () => {
       console.log(error);
     }
   };
+  useEffect(()=>{
+    function handleWindowResize() {
+      setWindowSize(window.innerWidth);
+    }
+    if(windowSize>780){
+      setOpen(false)
+    }
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  },[windowSize])
 
   return (
     <div className="flex items-center justify-between p-4 z-[100] w-full absolute">
@@ -101,3 +116,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+

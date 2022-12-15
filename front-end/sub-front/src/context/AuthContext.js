@@ -6,16 +6,34 @@ const AuthContext = createContext();
 export function AuthContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [movies, setMovies] = useState([]);
+  const [subscriber, setSubscriber] = useState({});
 
   async function getAllMovies() {
     const { data } = await axios.get("http://localhost:8001/movies");
     setMovies(data);
-    return data
+    return data;
   }
-  useEffect(()=>{
-    getAllMovies()
-  },[user])
+  useEffect(() => {
+    getAllMovies();
+  }, [user]);
 
+  async function findSubscription() {
+    const { data: subscriptions } = await axios.get(
+      "http://localhost:8001/subscriptions"
+    );
+    const sub = subscriptions.find((sub) => sub.memberId === user._id);
+    if (sub) {
+      setSubscriber(sub);
+    }
+  }
+
+  useEffect(() => {
+    findSubscription();
+  }, [user._id]);
+
+  useEffect(() => {
+    findSubscription();
+  }, [user._id]);
   async function signUp(obj) {
     const { data: members } = await axios.get("http://localhost:8001/members");
 
@@ -41,9 +59,11 @@ export function AuthContextProvider({ children }) {
 
     if (member.password != password) {
       throw false;
+    } else {
+      setUser(member);
+
+      return true;
     }
-    setUser(member);
-    return true;
   }
   function logOut() {
     setUser({});
@@ -51,7 +71,19 @@ export function AuthContextProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ signUp, logIn, logOut, user ,movies,getAllMovies}}>
+    <AuthContext.Provider
+      value={{
+        signUp,
+        logIn,
+        logOut,
+        user,
+        movies,
+        getAllMovies,
+        subscriber,
+        setSubscriber,
+        findSubscription
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

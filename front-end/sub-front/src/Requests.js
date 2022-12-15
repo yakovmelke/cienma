@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import Row from "./components/Row";
 import { UserAuth } from "./context/AuthContext";
 

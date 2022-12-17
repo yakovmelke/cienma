@@ -70,7 +70,7 @@ export default function LoginPage() {
 
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center  bg-[url('./assets/Cinema-City-Theater-scaled.jpg')] bg-cover bg-center">
-      <div className="  bg-opacity-70 d-flex w-[90%] sm:w-[50%] lg:w-[30%] h-[75%] bg-white rounded-lg border shadow-2xl shadow-black">
+      <div className="  bg-opacity-70 d-flex w-[90%] sm:w-[50%] lg:w-[30%] h-[600px] bg-white rounded-lg border shadow-2xl shadow-black">
         <div className="px-2 h-[90%] flex flex-col justify-around  items-center w-full ">
           <h3 className="font-bold text-2xl">Log in Page</h3>
           <form

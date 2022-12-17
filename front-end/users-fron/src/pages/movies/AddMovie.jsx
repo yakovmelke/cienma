@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createMovies } from "../../apiData/MoviesApiData";
-import {toast} from 'react-toastify'
+
 import AddAndEditMovie from "../../utils/AddAndEditMovie";
 import { ErrorMsg } from "../../utils/ErrorMsg";
 
@@ -14,13 +14,7 @@ export default function AddMovie() {
     genres: "",
     premiered: "",
   });
-  const toastObj ={
-    position:"bottom-right",
-    autoClose:8000,
-    pauseOnHover:true,
-    draggable:true,
-    theme:"dark"
-  }
+ 
   const dispatch = useDispatch();
   const [genre, setGenre] = useState([]);
   function saveMovie() {

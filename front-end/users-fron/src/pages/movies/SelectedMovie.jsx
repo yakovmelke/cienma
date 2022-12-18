@@ -36,7 +36,7 @@ const SelectedMovie = () => {
         </div>
        
       </div>
-      <div className="flex flex-wrap justify-center mx-5">
+      <div className="flex flex-wrap justify-center mx-5 w-full">
 
       <MovieComponent movie={movieData}/>
       </div>

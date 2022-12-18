@@ -88,13 +88,17 @@ export default function Users() {
               <p>User Name:{user.userName}</p>
               <p>Session time out:{user.sessionTimeOut}</p>
               <p>Created date:{user.createdDate}</p>
-              <div className="flex flex-wrap justify-center items-center">
+              <div className="flex flex-wrap justify-center items-center flex-col">
                 <p>Permissions: </p>
-                <ul className="flex flex-wrap justify-center items-center">
+                <ul className="block">
                   {permissionsKeys.map((per, i) => (
-                    <li key={i}>
+                    <li className="flex justify-between" key={i}>
+                      <span>
+
                       {checkPermissionName(per)}{" "}
+                      </span>
                       <input
+                      className="ml-5"
                         type="checkbox"
                         name={per}
                         readOnly

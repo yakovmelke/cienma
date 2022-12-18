@@ -8,7 +8,7 @@ export default function Movies() {
   const [input, setInput] = useState("");
   const userLogin = useSelector((user) => user.login);
   const [moviesDisplay, setMoviesDisplay] = useState([
-    { _id: 1, name: "", year: "", genres: [], image: "" },
+    
   ]);
 
   const getAllMoviesInReducer = useSelector((movie) => movie.movies);
@@ -55,11 +55,11 @@ export default function Movies() {
           />
         </div>
       </div>
-      <div className="flex flex-wrap justify-between mx-5">
-        {moviesDisplay.map((movie, i) => {
+      {userLogin.permissions.viewMovies ?(<div className="flex flex-wrap justify-between mx-5 ">
+        {moviesDisplay.length>0 && moviesDisplay.map((movie, i) => {
           return <MovieComponent key={i} movie={movie} />;
         })}
-      </div>
+      </div>):<h1 className=" text-4xl font-bold text-red-800">You are not authorized</h1>}
     </div>
   );
 }

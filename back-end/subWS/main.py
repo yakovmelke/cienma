@@ -8,7 +8,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 
 CORS(app)
-app.json_encoder = Jsonencoder
+app.json_provider_class = Jsonencoder
 
 app.register_blueprint(members, url_prefix="/members")
 

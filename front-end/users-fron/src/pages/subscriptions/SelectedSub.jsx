@@ -18,6 +18,8 @@ const SelectedSub = () => {
   }, [id]);
 
   return (
+    <>
+    {userLogin.permissions.viewSubscriptions ? (
     <div className="bg-black text-white flex flex-col items-center pt-6">
       <h1 className="text-6xl text-center font-bold">selected Subscription</h1>
       <div className=" w-[95%] border-b-2 border-gray-300 mb-2 text-lg flex  justify-center items-center py-4">
@@ -41,7 +43,8 @@ const SelectedSub = () => {
       <div className="w-[90%] flex justify-center">
         <SubComponent member={member} />
       </div>
-    </div>
+    </div>):<h1 className="text-center text-4xl font-bold text-red-800">You are not authorized</h1>}
+    </>
   );
 };
 

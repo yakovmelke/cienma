@@ -41,8 +41,8 @@ const MovieComponent = ({ movie }) => {
     <>
       {userLogin.permissions.viewMovies ? (
         <div className="w-full sm:w-[45%] md:w-[30%] lg:w-[23%] p-3 border border-stone-300 rounded-lg bg-slate-200 text-black bg-opacity-60  shadow-lg shadow-white mb-6 text-center hover:bg-red-500 hover:text-white duration-500 ">
-          <div key={movie?._id}>
-            <img className="rounded-xl" src={movie?.image} alt={movie?.name} />
+          <div className="flex items-center flex-col" key={movie?._id}>
+            <img className="w-56 h-56 object-contain" src={movie?.image} alt={movie?.name} />
             <h4> {movie?.name}</h4>
             <p> {movie?.premiered}</p>
             <div className="flex ">

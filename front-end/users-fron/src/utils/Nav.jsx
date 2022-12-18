@@ -33,7 +33,7 @@ export default function Nav({ admin = true }) {
             className={`md:flex 
             bg-gray-00  md:items-center md:pb-0 pb-12 absolute md:static  md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
               open
-                ? "top-16 opacity-90"
+                ? "top-16 bg-slate-200 md:bg-transparent opacity-90"
                 : "top-[-490px] md:opacity-90 opacity-0"
             }`}
           >

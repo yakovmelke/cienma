@@ -42,7 +42,7 @@ export default function Nav({ admin = true }) {
               to={"/main_page/movies"}
             >
               <li
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen(false)}
                 className="md:ml-8 text-xl md:my-0 my-7 flex items-center "
               >
                 Movies
@@ -54,7 +54,7 @@ export default function Nav({ admin = true }) {
               to={"/main_page/subscriptions"}
             >
               <li
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen(false)}
                 className="md:ml-8 text-xl md:my-0 my-7 flex items-center "
               >
                 Subscriptions
@@ -67,7 +67,7 @@ export default function Nav({ admin = true }) {
                 to={"/main_page/users"}
               >
                 <li
-                  onClick={() => setOpen(!open)}
+                  onClick={() => setOpen(false)}
                   className="md:ml-8 text-xl md:my-0 my-7 flex items-center"
                 >
                   Users Management

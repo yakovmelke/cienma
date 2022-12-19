@@ -13,7 +13,7 @@ const Navbar = () => {
     try {
       logOut();
       navigate("/");
-      setOpen(!open)
+      setOpen(false)
     } catch (error) {
       console.log(error);
     }
@@ -33,8 +33,9 @@ const Navbar = () => {
   },[windowSize])
 
   return (
-    <div className="flex items-center justify-between p-4 z-[100] w-full absolute">
-      <Link to="/">
+    <div className="flex items-center justify-between p-4 z-[100] w-full fixed">
+      <Link to="/"
+      onClick={() => setOpen(false)}>
         <h1 className="text-red-600 text-4xl font-bold cursor-pointer">
           Yakov-Cinema
         </h1>
@@ -56,7 +57,7 @@ const Navbar = () => {
         }`}
       >
         <li
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen(false)}
           className="md:ml-8 text-xl md:my-0 my-7 flex items-center "
         >
           <Link to="/allMovies">
@@ -66,7 +67,7 @@ const Navbar = () => {
         {user?.email ? (
           <>
             <li
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpen(false)}
               className="md:ml-8 text-xl md:my-0 my-7 flex items-center "
             >
               <Link to="/account">
@@ -89,7 +90,7 @@ const Navbar = () => {
               to="/login"
             >
               <li
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen(false)}
                 className="md:ml-8 text-xl md:my-0 my-7 flex items-center"
               >
                 <button className="text-white pr-4">Sign In</button>
@@ -100,7 +101,7 @@ const Navbar = () => {
               to="/signup"
             >
               <li
-                onClick={() => setOpen(!open)}
+                onClick={() => setOpen(false)}
                 className="md:ml-8 text-xl md:my-0 my-7 flex items-center"
               >
                 <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">

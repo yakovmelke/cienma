@@ -31,9 +31,6 @@ export function AuthContextProvider({ children }) {
     findSubscription();
   }, [user._id]);
 
-  useEffect(() => {
-    findSubscription();
-  }, [user._id]);
   async function signUp(obj) {
     const { data: members } = await axios.get("http://localhost:8001/members");
 
@@ -56,9 +53,10 @@ export function AuthContextProvider({ children }) {
   async function logIn(userName, password) {
     const { data: members } = await axios.get("http://localhost:8001/members");
     const member = members.find((element) => element.userName === userName);
+if (member === undefined)throw "User Name Or Password Was Wrong";
 
     if (member.password != password) {
-      throw false;
+      throw "User Name Or Password Was Wrong";
     } else {
       setUser(member);
 
@@ -81,7 +79,7 @@ export function AuthContextProvider({ children }) {
         getAllMovies,
         subscriber,
         setSubscriber,
-        findSubscription
+        findSubscription,
       }}
     >
       {children}
